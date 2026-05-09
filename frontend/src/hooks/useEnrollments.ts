@@ -17,7 +17,7 @@ export interface Enrollment {
   };
 }
 
-export function useEnrollments() {
+export function useEnrollments(initialData?: Enrollment[]) {
   return useQuery<Enrollment[]>({
     queryKey: ['enrollments', 'my'],
     queryFn: async () => {
@@ -25,5 +25,6 @@ export function useEnrollments() {
       return data;
     },
     staleTime: 30_000,
+    initialData,
   });
 }
