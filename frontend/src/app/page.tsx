@@ -4,6 +4,9 @@ import {
   Zap, Shield, Globe, ArrowRight, Star, BarChart2, MessageSquare,
 } from 'lucide-react';
 
+// SSG — all content is static; built once at build time and served from CDN
+export const dynamic = 'force-static';
+
 const stats = [
   { label: 'Courses', value: '500+', icon: BookOpen, color: 'text-indigo-600', bg: 'bg-indigo-50' },
   { label: 'Students', value: '50,000+', icon: Users, color: 'text-violet-600', bg: 'bg-violet-50' },
