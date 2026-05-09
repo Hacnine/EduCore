@@ -2,8 +2,12 @@ import { notFound } from 'next/navigation';
 import CourseDetailClient from './course-detail-client';
 import type { CourseDetail } from '@/hooks/useCourse';
 
-// ISR: revalidate course detail every hour
+// ISR + DSG (Deferred Static Generation):
+// - generateStaticParams pre-builds known course slugs at build time (SSG)
+// - Unknown slugs are generated on first request then cached (DSG behaviour)
+// - All pages revalidate every hour (ISR)
 export const revalidate = 3600;
+export const dynamicParams = true; // allow on-demand generation for new courses
 
 async function fetchCourse(slug: string): Promise<CourseDetail | null> {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3000/api';
